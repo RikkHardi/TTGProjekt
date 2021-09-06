@@ -1,1 +1,1 @@
-Hey! Hanna siin :)
+print("Hey! Hanna siin :)" )
