@@ -1,3 +1,4 @@
+![IMG_20210920_110826](https://user-images.githubusercontent.com/90180025/134810457-b7986c39-734b-4bb3-8db4-d544ce56b8ea.jpg)
 # TTGProjekt
 PROJEKTI NIMI: Digiaktiivsusmonitor
 Meeskonnas: Hanna Helena Pool, Richard Miikael Jaks, Henn Kaaleb Humal
