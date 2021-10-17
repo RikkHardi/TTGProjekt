@@ -67,6 +67,9 @@ class notes:
         with open('notes.pickle', 'wb') as notesData:
             pickle.dump(notes, notesData)
     def get():
-        with open('notes.pickle', 'rb') as notesData:
-            loadedData = pickle.load(notesData)
-            return loadedData
+        try:
+            with open('notes.pickle', 'rb') as notesData:
+                loadedData = pickle.load(notesData)
+                return loadedData
+        except:
+            return ''
