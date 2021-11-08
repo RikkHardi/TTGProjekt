@@ -53,9 +53,18 @@ class timeplan:
         with open('timeplan.pickle', 'wb') as timeplanData:
             pickle.dump(finalDump, timeplanData)
     def get():
-        with open ('timeplan.pickle', 'rb') as timeplanData:
-            loadedData = pickle.load(timeplanData)
-            return loadedData
+        try:
+            f = open('timeplan.pickle', 'rb')
+            f.close()
+        except:
+            f = open('timeplan.pickle', 'x')
+            f.close()
+        try:
+            with open ('timeplan.pickle', 'rb') as timeplanData:
+                loadedData = pickle.load(timeplanData)
+                return loadedData
+        except:
+            return {}
 #See osa Kaalebile
 # käsud:
 # - notes.set(notes)

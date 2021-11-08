@@ -16,7 +16,7 @@ class Timeplan:
         self.wFrame = tk.Frame(rootWin, borderwidth=2, relief='groove',
                           height=240, background=self.background)
         self.displayedEvents = []
-        self.font = tkFont.Font(family='Futura', size=12)
+        self.font = None
 
         #Create the grid
         tk.Grid.columnconfigure(self.wFrame, 0, weight=1)
@@ -27,8 +27,10 @@ class Timeplan:
         for widget in self.displayedEvents:
             widget.grid_forget()
         try:
+            print(selectedDay)
             events = tp.get()[selectedDay]
         except KeyError:
+            print(KeyError)
             return
         eventsNames = events.keys()
 
