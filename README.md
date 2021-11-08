@@ -1,8 +1,8 @@
-![IMG_20210920_110826](https://user-images.githubusercontent.com/90180025/134810457-b7986c39-734b-4bb3-8db4-d544ce56b8ea.jpg)
+
 # TTGProjekt
-PROJEKTI NIMI: Digiaktiivsusmonitor
+PROJEKTI NIMI: Ajakava
 Meeskonnas: Hanna Helena Pool, Richard Miikael Jaks, Henn Kaaleb Humal
-Lühikirjeldus: Programm jälgib mis veebikehti külastatakse ja kaua seal aega veedetakse. Inimene saab pärast teada palju aega ta kindlal veebilehel on veetnud. Samuti kaua on läinud meelelahutusele või näiteks haridusele. 
+Lühikirjeldus: Programmiga on võimalik teha endale märkmeid ja kaardistada üritusi ja päeva ajakava.
 Lingid: 
 https://trello.com/b/knMIgi31/digiaktiivsusmonitori-projekt
 https://drive.google.com/drive/folders/1NEw0axyqHIk3rgl9LJys5Y6cKVPRztkf?usp=sharing
