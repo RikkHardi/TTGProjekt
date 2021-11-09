@@ -9,7 +9,7 @@ from dataSystem import notes
 class notesMod:
     def __init__(self, rootWin):
         #Create self variables
-        self.wFrame = tk.Frame(rootWin, borderwidth=2, relief='groove', height=260)
+        self.wFrame = ttk.Frame(rootWin, height=260)
         self.font = None
         self.textField = tk.Text(self.wFrame, font=self.font)
         self.textField.insert('1.0', notes.get())

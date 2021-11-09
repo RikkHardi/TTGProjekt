@@ -24,9 +24,10 @@ class cCalendar:
         self.timetable = timetable
         self.font = None
 
+        self.timetable.addCal(self)
+
         #Create calendar widget
         self.cal = Calendar(rootWin, font=self.font,
-                            height=400, width=500,
                        year=self.today.year,
                        month=self.today.month,
                        day=self.today.day)
@@ -45,6 +46,18 @@ class cCalendar:
 
     def addEvent(self, dateA, event, desc):
         self.cal.calevent_create(dateA, event, desc)
+        self.timetable.updateTimetable(self.cal.get_date())
+
+    def delEvent(self, dateA, event):
+        dateIDs = self.cal.get_calevents(date=dateA)
+        #print(dateIDs)
+        for dID in dateIDs:
+            ce = self.cal.calevents[dID]['text']
+            #print(f'delEvent: ({ce}) {event}')
+            if ce == event:
+                self.cal.calevent_remove(dID)
+
+        
 
 
 

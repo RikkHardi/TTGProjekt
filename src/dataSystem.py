@@ -65,20 +65,38 @@ class timeplan:
                 return loadedData
         except:
             return {}
+    def delete(name, day):
+        try:
+            f = open('timeplan.pickle', 'rb')
+            f.close()
+        except:
+            f = open('timeplan.pickle', 'x')
+            f.close()
+        try:
+            with open('timeplan.pickle', 'rb') as timeplanData:
+                loadedData = pickle.load(timeplanData)
+                print(day, name)
+                del loadedData[day][name]
+                endData = loadedData
+            with open('timeplan.pickle', 'wb') as timeplanData:
+                pickle.dump(endData, timeplanData)
+        except KeyError:
+            print('Could not delete')
+            return
 #See osa Kaalebile
 # käsud:
 # - notes.set(notes)
 # -- Salvestab parajasti kirjutatud asjad ära
 # - notes.get()
 # -- saad salvestatud märkmed
-class notes:
-    def set(notes):
-        with open('notes.pickle', 'wb') as notesData:
-            pickle.dump(notes, notesData)
-    def get():
-        try:
-            with open('notes.pickle', 'rb') as notesData:
-                loadedData = pickle.load(notesData)
-                return loadedData
-        except:
-            return ''
+#class notes:
+#    def set(notes):
+#        with open('notes.pickle', 'wb') as notesData:
+#            pickle.dump(notes, notesData)
+#    def get():
+#        try:
+#            with open('notes.pickle', 'rb') as notesData:
+#                loadedData = pickle.load(notesData)
+#                return loadedData
+#        except:
+#            return ''

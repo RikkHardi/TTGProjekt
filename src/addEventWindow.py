@@ -5,10 +5,16 @@ from datetime import datetime
 
 #Import custom modules
 from dataSystem import timeplan
+import colors
 class AddEventWindow:
-    def __init__(self, rootWin, cCal, colorkw, font):
+    def __init__(self, rootWin, cCal, font):
         #Self variables
         self.root = tk.Toplevel(rootWin)
+        self.root.configure(bg = colors.background)
+
+        #Styling
+        self.style = ttk.Style(rootWin)
+        self.style.theme_use('clam')
         timeArray = []
         for i in range (0, 25):
             if len(str(i)) < 2:
@@ -16,17 +22,6 @@ class AddEventWindow:
             timeArray.append(f'{i}:00')
         #Calendar
         self.cCal = cCal
-
-        #Color
-        self.colorkw = colorkw
-
-        #Style
-        self.style = ttk.Style(self.root)
-        self.style.configure("TLabel", **colorkw)
-        self.style.configure('TButton', **colorkw)
-        self.style.configure('TEntry', **colorkw, fieldbackground=colorkw['background'])
-        self.style.configure('TMenubutton', **colorkw, fieldbackground=colorkw['background'], highlightcolor='black')
-        self.root.configure(background = colorkw['background'])
         
         #Variables
         self.startTime = tk.StringVar(value=timeArray[0])
@@ -41,13 +36,15 @@ class AddEventWindow:
         self.descL = ttk.Label(self.root, text='description')
 
         #Actual shit
-        self.dateE = DateEntry(self.root, state='NORMAL')
+        self.dateE = DateEntry(self.root, state='NORMAL', style='TEntry')
         self.nameE = ttk.Entry(self.root, style='TEntry')
-        self.startE = ttk.OptionMenu(self.root, self.startTime, *timeArray, style='TMenubutton')
+        self.startE = ttk.OptionMenu(self.root, self.startTime, *timeArray,
+                                     style='TMenubutton')
         self.endE = ttk.OptionMenu(self.root, self.endTime, *timeArray)
-        self.descE = tk.Text(self.root)
-        self.descE.configure(**colorkw)
-        self.addButton = ttk.Button(self.root, text='Add Event', command=self.addEvent)
+        self.descE = tk.Text(self.root, **colors.tkTextColors,
+                             width = 50, height=5)
+        self.addButton = ttk.Button(self.root, text='Add Event',
+                                    command=self.addEvent, style='c.TButton')
 
         #Configure the grid
         tk.Grid.columnconfigure(self.root, 0, weight=1, minsize=40)
@@ -65,7 +62,7 @@ class AddEventWindow:
         self.nameL.grid(column=0, row=1, sticky='ns')
         self.startL.grid(column=0, row=2, sticky='ns')
         self.endL.grid(column=0, row=3, sticky='ns')
-        self.descL.grid(column=0, row=4, sticky='ns')
+        self.descL.grid(column=0, row=4, sticky='n')
 
         #Entrys in grid
         self.dateE.grid(column=1, row=0, sticky='nsew')
