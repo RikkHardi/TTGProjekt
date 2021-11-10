@@ -27,6 +27,7 @@ class AddEventWindow:
         self.startTime = tk.StringVar(value=timeArray[0])
         self.endTime = tk.StringVar(value=timeArray[0])
         self.date = tk.StringVar()
+        self.padding = 2
         
         #Labels
         self.dateL = ttk.Label(self.root, text='Date')
@@ -36,7 +37,8 @@ class AddEventWindow:
         self.descL = ttk.Label(self.root, text='description')
 
         #Actual shit
-        self.dateE = DateEntry(self.root, state='NORMAL', style='TEntry')
+        self.dateE = DateEntry(self.root, state='NORMAL', style='TEntry', date_pattern='dd-mm-yyyy')
+        self.dateE.set_date(cCal.cal.get_date())
         self.nameE = ttk.Entry(self.root, style='TEntry')
         self.startE = ttk.OptionMenu(self.root, self.startTime, *timeArray,
                                      style='TMenubutton')
@@ -44,7 +46,9 @@ class AddEventWindow:
         self.descE = tk.Text(self.root, **colors.tkTextColors,
                              width = 50, height=5)
         self.addButton = ttk.Button(self.root, text='Add Event',
-                                    command=self.addEvent, style='c.TButton')
+                                    command=self.addEvent, style='b.TButton')
+        self.cancelButton = ttk.Button(self.root, text='Cancel',
+                                       command=self.root.destroy, style='canc.TButton')
 
         #Configure the grid
         tk.Grid.columnconfigure(self.root, 0, weight=1, minsize=40)
@@ -58,25 +62,26 @@ class AddEventWindow:
         tk.Grid.rowconfigure(self.root, 5, weight=0)
 
         #Labels in grid
-        self.dateL.grid(column=0, row=0, sticky='ns')
-        self.nameL.grid(column=0, row=1, sticky='ns')
-        self.startL.grid(column=0, row=2, sticky='ns')
-        self.endL.grid(column=0, row=3, sticky='ns')
-        self.descL.grid(column=0, row=4, sticky='n')
+        self.dateL.grid(column=0, row=0, sticky='nsew', pady=self.padding)
+        self.nameL.grid(column=0, row=1, sticky='nsew', pady=self.padding)
+        self.startL.grid(column=0, row=2, sticky='nsew', pady=self.padding)
+        self.endL.grid(column=0, row=3, sticky='nsew', pady=self.padding)
+        self.descL.grid(column=0, row=4, sticky='nsew', pady=self.padding)
 
         #Entrys in grid
-        self.dateE.grid(column=1, row=0, sticky='nsew')
-        self.nameE.grid(column=1, row=1, sticky='nsew')
-        self.startE.grid(column=1, row=2, sticky='w')
-        self.endE.grid(column=1, row=3, sticky='w')
-        self.descE.grid(column=1, row=4, sticky='nsew')
+        self.dateE.grid(column=1, row=0, sticky='nsw', pady=self.padding)
+        self.nameE.grid(column=1, row=1, sticky='nsw', pady=self.padding)
+        self.startE.grid(column=1, row=2, sticky='w', pady=self.padding)
+        self.endE.grid(column=1, row=3, sticky='w', pady=self.padding)
+        self.descE.grid(column=1, row=4, sticky='nsw', pady=self.padding)
 
         #Button in grid
-        self.addButton.grid(column=0, row=5, sticky='e')
+        self.addButton.grid(column=1, row=5, sticky='ew')
+        self.cancelButton.grid(column=0, row=5, sticky='ew')
 
     def addEvent(self):
         date = self.dateE.get_date()
-        dateStr = datetime.strftime(date, '%-m/%-d/%y')
+        dateStr = datetime.strftime(date, '%-d.%-m.%-y')
         print(dateStr)
         name = self.nameE.get()
         startTime = self.startTime.get()

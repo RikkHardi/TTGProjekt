@@ -15,6 +15,7 @@ def openAddEvent():
     w = AddEventWindow(root, cal, font)
     
 root = tk.Tk()
+root.title('Time Manager')
 #root.geometry('310x500')
 #root.resizable(0,0)
 
@@ -31,13 +32,19 @@ root.rowconfigure(1, weight=1)
 
 root.rowconfigure(2, weight=0)
 
+#Add canvas to scroll timeplan
+cv = tk.Canvas(root)
+sb = ttk.Scrollbar(root, command=cv.yview)
+cv['yscrollcommand'] = sb.set
+
 #Add timeplan
 tp = Timeplan(root)
 
 #Add calendar
 cal = cCalendar(root, tp)
 #New event button
-newEventButton = ttk.Button(root, text='New Event', command=openAddEvent, style='c.TButton')
+newEventButton = ttk.Button(root, text='New Event', command=openAddEvent,
+                            style='b.TButton')
 
 #Add notes
 #notes = notesMod(root)
@@ -66,15 +73,35 @@ style.layout(
                  )]}
              )]
         )
+style.layout('TEntry', [
+    ('Entry.highlight', {
+        'sticky': 'nswe',
+        'children':
+            [('Entry.border', {
+                'border': '1',
+                'sticky': 'nswe',
+                'children':
+                    [('Entry.padding', {
+                        'sticky': 'nswe',
+                        'children':
+                            [('Entry.textarea',
+                              {'sticky': 'nswe'})]
+                    })]
+            })]
+    })])
 
 style.configure('c.TButton', anchor = 'center')
 style.map('c.TButton', **colors.ttkButtonColors)
+style.map('b.TButton', **colors.ttkButtonColors)
+style.map('canc.TButton', **colors.ttkCancelColors)
 style.configure('c.TButton.label', justify='left', side='left')
 style.configure('TLabel', **colors.basicColoring)
 style.configure('b.TLabel', **colors.ttkLabelColors)
+style.configure('c.TLabel', **colors.basicColoringBorders)
 style.configure('TEntry', **colors.entryColors)
-style.configure('TMenubutton', **colors.basicColoring)
+style.map('TMenubutton', **colors.menubuttonColors)
 style.configure('TFrame', **colors.tkFrameColors)
+
 
 
 #Add to grid

@@ -30,7 +30,8 @@ class cCalendar:
         self.cal = Calendar(rootWin, font=self.font,
                        year=self.today.year,
                        month=self.today.month,
-                       day=self.today.day)
+                       day=self.today.day,
+                            date_pattern='dd.mm.yy')
 
         #Binds callback to dateclick event
         self.cal.bind("<<CalendarSelected>>", self.CalendarSelectedCallback)
@@ -39,7 +40,7 @@ class cCalendar:
         eventsDict = timeplan.get()
         for dateR in eventsDict.keys():
             for event in eventsDict[dateR].keys():
-                self.addEvent(datetime.strptime(dateR, '%m/%d/%y'), event, eventsDict[dateR][event][2])
+                self.addEvent(datetime.strptime(dateR, '%d.%m.%y'), event, eventsDict[dateR][event][2])
         
     def CalendarSelectedCallback(self, event):
         self.timetable.updateTimetable(self.cal.get_date())

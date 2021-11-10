@@ -11,12 +11,10 @@ from cCalendar import cCalendar
 class Timeplan:
     def __init__(self, rootWin):
         #Self variables
-        self.background = '#191A19'
-        self.foreground = '#D8E9A8'
-        self.labelBackground = 'black'
+        self.background = colors.background
         self.rootWindow = rootWin
-        self.wFrame = tk.Frame(rootWin, borderwidth=0, relief='flat',
-                          height=240, background=self.background)
+        self.wFrame = ttk.Frame(rootWin, borderwidth=0, relief='flat',
+                          height=240)
         self.displayedEvents = []
         self.font = None
 
@@ -89,7 +87,7 @@ class Timeplan:
     def openWindow(self, eventName, selectedDay):
         #print(self, eventName, selectedDay)
         newWin = tk.Toplevel(self.rootWindow, background=colors.background)
-        newWin.geometry('200x100')
+        newWin.geometry('200x120')
         newWin.title(eventName)
         
         events = tp.get()[selectedDay]
@@ -108,17 +106,17 @@ class Timeplan:
 
         deleteButton = ttk.Button(newWin, text='Delete event',
                                   command=lambda win=newWin, eName=eventName, sDay=selectedDay : self.deleteEvent(win, eName, sDay),
-                                  style='c.TButton')
+                                  style='canc.TButton')
         closeButton = ttk.Button(newWin, text='Close',
                                  command=newWin.destroy,
-                                 style='c.TButton')
+                                 style='canc.TButton')
 
         deleteButton.grid(row=1, column=0, sticky='nsew')
         closeButton.grid(row=1, column=1, sticky='nsew')
     def deleteEvent(self, win, name, day):
         tp.delete(name, day)
         self.updateTimetable(day)
-        self.cal.delEvent(datetime.strptime(day, '%m/%d/%y'), name)
+        self.cal.delEvent(datetime.strptime(day, '%d.%m.%y'), name)
         win.destroy()
         
             
