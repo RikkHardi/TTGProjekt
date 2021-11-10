@@ -1,6 +1,6 @@
 
 # TTGProjekt
-PROJEKTI NIMI: Ajakava
+TimeplanX: Ajakava
 Meeskonnas: Hanna Helena Pool, Richard Miikael Jaks, Henn Kaaleb Humal
 Lühikirjeldus: Programmiga on võimalik kaardistada üritusi ja päeva ajakava.
 Lingid: 
