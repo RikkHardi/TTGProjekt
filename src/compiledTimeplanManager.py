@@ -15,7 +15,7 @@ def openAddEvent():
     w = AddEventWindow(root, cal, font)
     
 root = tk.Tk()
-root.title('Time Manager')
+root.title('TimeplanX')
 #root.geometry('310x500')
 #root.resizable(0,0)
 
