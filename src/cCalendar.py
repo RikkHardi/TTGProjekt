@@ -47,6 +47,7 @@ class cCalendar:
 
     def addEvent(self, dateA, event, desc):
         self.cal.calevent_create(dateA, event, desc)
+        print(self.cal.get_date())
         self.timetable.updateTimetable(self.cal.get_date())
 
     def delEvent(self, dateA, event):
