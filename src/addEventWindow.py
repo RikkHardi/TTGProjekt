@@ -81,7 +81,8 @@ class AddEventWindow:
 
     def addEvent(self):
         date = self.dateE.get_date()
-        dateStr = datetime.strftime(date, '%-d.%-m.%-y')
+        print(date)
+        dateStr = datetime.strftime(date, '%d.%m.%y')
         print(dateStr)
         name = self.nameE.get()
         startTime = self.startTime.get()
